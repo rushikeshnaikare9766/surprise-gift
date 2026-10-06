@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balloon Surprise 🎈</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body { background: linear-gradient(135deg, #ff9a9e, #fad0c4); } /* pink gradient */
+    .balloon {
+      width: 120px;
+      height: 160px;
+      background: maroon;   /* maroon red balloon */
+      border-radius: 70% 70% 70% 70%;
+      cursor: pointer;
+      margin: 20px auto;
+      transition: transform 0.3s ease;
+    }
+    .balloon:hover { transform: scale(1.05); }
+    .hidden { display: none; }
+    .photo {
+      max-width: 250px;
+      margin: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .wish {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: maroon;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center text-center px-4">
+  
+  <!-- Heading -->
+  <h2 id="heading" class="text-2xl sm:text-4xl font-bold text-purple-600 mb-6 mt-10">🎈 Click the Balloon 🎈</h2>
+
+  <!-- Balloon -->
+<!-- Balloon -->
+<img id="balloon" src="balloon.png" alt="Balloon" 
+     class="w-40 cursor-pointer transition-transform hover:scale-105 mx-auto" />
+
+  <!-- Horizontal photos container -->
+  <div id="photos" class="flex justify-center hidden">
+    <img src="friend1.jpg" alt="Friend Photo 1" class="photo" />
+    <img src="friend2.jpg" alt="Friend Photo 2" class="photo" />
+    <!-- <img src="friend3.jpg" alt="Friend Photo 3" class="photo" /> -->
+  </div>
+
+  <!-- Happy Birthday text -->
+  <p id="wishText" class="wish hidden">🎂 Happiest Birthday Anvika 🎂</p>
+
+  <script>
+    const balloon = document.getElementById('balloon');
+    const heading = document.getElementById('heading');
+    const photos = document.getElementById('photos');
+    const wishText = document.getElementById('wishText');
+
+    balloon.addEventListener('click', () => {
+      balloon.classList.add('hidden'); // balloon disappears
+      heading.classList.add('hidden'); // heading disappears
+      photos.classList.remove('hidden'); // show all photos horizontally
+      wishText.classList.remove('hidden'); // show Happy Birthday text
+      confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+      alert("🎉 POP! Surprise! 🎉");
+    });
+  </script>
+</body>
+</html>
